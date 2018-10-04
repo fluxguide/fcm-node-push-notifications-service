@@ -2,9 +2,6 @@
 require('dotenv').config()
 const admin = require("firebase-admin");
 
-// use dryRun? (do not send message)
-var dryRun = true;
-
 
 /**
  * ArgumentParser
@@ -16,28 +13,47 @@ var parser = new ArgumentParser({
     description: 'Node Push Server'
 });
 parser.addArgument(
-    ['-title', '--title'],
+    ['-t', '--title'],
     {
-        help: 'The title of the message'
+        help: 'The title of the message',
+        required: true,
+        defaultValue: ""
     }
 );
 parser.addArgument(
-    ['-message', '--message'],
+    ['-m', '--message'],
     {
-        help: 'The message of the message'
+        help: 'The message of the message',
+        required: true,
+        defaultValue: ""
     }
 );
 parser.addArgument(
     ['--topic'],
     {
-        help: 'The topic to send to'
+        help: 'The topic to send to',
+    }
+);
+parser.addArgument(
+    ['--device-id'],
+    {
+        help: 'Send to a single device (no topic)',
+    }
+);
+parser.addArgument(
+    ['--dry', '--dry-run'],
+    {
+        help: 'dry run (do not send)',
+        defaultValue: false
     }
 );
 
 var args = parser.parseArgs();
-console.dir({arguments: args});
 
-process.exit();
+// use dryRun? (do not send message)
+var dryRun = (args.dry == 'true') ? true : false;
+
+
 
 /**
  * Setup FCM admin
@@ -49,19 +65,40 @@ admin.initializeApp({
     databaseURL: process.env.DATABASE_URL
 });
 
-// This registration token comes from the client FCM SDKs.
-var registrationToken = 'clUtNR_APoo:APA91bEQjpDhF03GBmyLrrGyQ4Pp7CFYg9d1YSx4CmxDZR3Gdbq67GKNgbAmqMxU7Dwt0Gi2xVq3kALQTh7qartecBJNS2w_dqOFhn_QKgOP30_9R5syUBXsUtSNNQGzbRTq6jx0iStf';
+
+
+
+
+/** 
+ * Define Payload
+ */
 
 // See documentation on defining a message payload.
 var message = {
     data: {
-        title: "MyServerPush",
-        score: '850',
-        time: '2:45'
+        "title": args.title,
+        "body": args.message,
+        "notId": "10",
+        "otherData": "blabla"
     },
     // token: registrationToken
-    topic: topic
+    // topic: args.topic
 };
+
+
+
+/**
+ * Define if send to topic (if set) or device
+ */
+if (args.device_id) {
+    // This registration token comes from the client FCM SDKs.
+    message.token = args.device_id;
+}
+else if(args.topic) {
+    message.topic = args.topic;
+}
+
+
 
 // Send a message to the device corresponding to the provided
 // registration token.
