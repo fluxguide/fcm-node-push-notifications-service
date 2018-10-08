@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 require('dotenv').config()
 const admin = require("firebase-admin");
 
@@ -70,39 +70,9 @@ admin.initializeApp({
 
 
 /** 
- * Define Payload
+ * Define Payload for both platforms
  */
 
-// See documentation on defining a message payload.
-// ANDROID:
-// var message = {
-//     data: {
-//         "title": args.title,
-//         "body": args.message,
-//         "notId": "10",
-//         "otherData": "blabla"
-//     },
-//     // token: registrationToken
-//     // topic: args.topic
-// };
-
-// // iOS:
-// var message = {
-//     "notification": {
-//         "title": args.title,
-//         "body": args.message
-//     },
-//     "data": {
-//         // "title": args.title,
-//         // "body": args.message,
-//         "key1": "data 1",
-//         "key2": "data 2",
-//         "notId": "10",
-//         "content-available": "1"
-//     },
-// }
-
-// BOTH
 var message = {
     android: {
         ttl: 3600 * 1000, // 1 hour in milliseconds
@@ -126,10 +96,9 @@ var message = {
                 },
                 "content-available": '1'
             },
-            "otherData": "blabla",
             "notId": "10",
-        },
-        
+            "otherData": "blabla",
+        }, 
     },
 }
 
