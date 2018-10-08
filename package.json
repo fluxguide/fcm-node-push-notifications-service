@@ -1,7 +1,7 @@
 {
-  "name": "nodepushservice",
+  "name": "fcmpushnotificationservice",
   "version": "1.0.0",
-  "description": "",
+  "description": "FCM Push Notification Service.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "argparse": "^1.0.10",
+    "commander": "^2.18.0",
     "dotenv": "^6.0.0",
     "firebase-admin": "^6.0.0"
   }
