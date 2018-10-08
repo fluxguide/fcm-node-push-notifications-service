@@ -74,17 +74,64 @@ admin.initializeApp({
  */
 
 // See documentation on defining a message payload.
-var message = {
-    data: {
-        "title": args.title,
-        "body": args.message,
-        "notId": "10",
-        "otherData": "blabla"
-    },
-    // token: registrationToken
-    // topic: args.topic
-};
+// ANDROID:
+// var message = {
+//     data: {
+//         "title": args.title,
+//         "body": args.message,
+//         "notId": "10",
+//         "otherData": "blabla"
+//     },
+//     // token: registrationToken
+//     // topic: args.topic
+// };
 
+// // iOS:
+// var message = {
+//     "notification": {
+//         "title": args.title,
+//         "body": args.message
+//     },
+//     "data": {
+//         // "title": args.title,
+//         // "body": args.message,
+//         "key1": "data 1",
+//         "key2": "data 2",
+//         "notId": "10",
+//         "content-available": "1"
+//     },
+// }
+
+// BOTH
+var message = {
+    android: {
+        ttl: 3600 * 1000, // 1 hour in milliseconds
+        priority: 'normal',
+        data: {
+            "title": args.title,
+            "body": args.message,
+            "notId": "10",
+            "otherData": "blabla"
+        }
+    },
+    apns: {
+        headers: {
+            'apns-priority': '10'
+        },
+        payload: {
+            aps: {
+                alert: {
+                    title: args.title,
+                    body: args.message,
+                },
+                "content-available": '1'
+            },
+            "otherData": "blabla",
+            "notId": "10",
+        },
+        
+    },
+}
 
 
 /**
