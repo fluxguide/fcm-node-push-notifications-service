@@ -18,6 +18,11 @@ commander
     .option('--jsondata [jsondata]', 'Stringified json to pass in otherData')
     .parse(process.argv);
 
+// output help if not enough args
+if (process.argv.length < 3) {
+  commander.help()
+  return;
+}
 
 /** 
  * Validate JSON Data 
