@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+
+"use strict";
+
 require('dotenv').config()
 const admin = require("firebase-admin");
 const commander = require('commander');
