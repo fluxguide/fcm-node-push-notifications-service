@@ -3,8 +3,8 @@
 "use strict";
 
 require('dotenv').config()
-var admin = require("firebase-admin");
-var commander = require('commander');
+const admin = require("firebase-admin");
+const commander = require('commander');
 
 /**
  * Argument Parsing with commander
@@ -30,7 +30,7 @@ if (process.argv.length < 3) {
 /** 
  * Validate JSON Data 
  * */
-var otherData = {};
+let otherData = {};
 if(commander.jsondata) otherData = JSON.parse(commander.jsondata);
 otherData = JSON.stringify(otherData);
 
@@ -39,7 +39,7 @@ otherData = JSON.stringify(otherData);
 /**
  * Setup FCM admin
  */
-var serviceAccount = require(process.env.SERVICE_ACCOUNT_JSON);
+const serviceAccount = require(process.env.SERVICE_ACCOUNT_JSON);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -52,7 +52,7 @@ admin.initializeApp({
 /** 
  * Define Payload for Android + iOS
  */
-var message = {
+let message = {
     android: {
         ttl: 3600 * 1000, // 1 hour in milliseconds
         priority: 'normal',
