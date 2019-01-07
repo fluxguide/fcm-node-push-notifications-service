@@ -1,5 +1,10 @@
 # FCM Push Notification Service
 
+## Purpose
+
+Send push notifications via FCM (Firebase Cloud Messaging). Created specifically to work with [Phonegap Push Notifications Plugin](https://github.com/phonegap/phonegap-plugin-push/). You might need to alter the payload if using a different plugin/system in your app.
+
+
 ## Installation
 
 ### 1. Install node modules. In this directory, run: 
