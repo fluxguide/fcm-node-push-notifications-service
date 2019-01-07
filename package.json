@@ -1,13 +1,13 @@
 {
   "name": "fcmpushnotificationservice",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "FCM Push Notification Service.",
-  "main": "index.js",
+  "main": "send.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Node", "FCM", "Push Notifications", "Firebase Cloud Messaging"],
+  "author": "Fluxguide office@fluxguide.com",
   "license": "ISC",
   "dependencies": {
     "commander": "^2.18.0",
