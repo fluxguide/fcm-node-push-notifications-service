@@ -15,7 +15,7 @@ npm install
 
 ### 2. Get service_account.json file
 
-Download service_accounts.json file from [Firebase Console](https://console.firebase.google.com) → Your Project → Settings → Service Accounts → **Generate new private key**
+Download service_accounts.json file from [Firebase Console](https://console.firebase.google.com) → Your Project → Settings → Service Accounts → **Generate new private key** (for Node.js)
 
 Copy this file (`service_account.json`) to this directory.
 
